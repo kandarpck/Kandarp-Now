@@ -19,3 +19,5 @@ Building a Personal Assistant that works for you and gives you the information w
 #Connection to my own search engine
 Integration pending. Will add later
 
+#Installation Steps
+After project completion
