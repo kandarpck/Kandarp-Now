@@ -1,7 +1,5 @@
 package com.kandarp.launcher.now;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -100,7 +98,12 @@ public class PreConfigActivity extends Activity {
                             "No ID found, register for new; ELSE condition");
                     mRegisterTask.execute();
                 }
+            } else {
+                // Start the main Now Activity
+                Intent now = new Intent(PreConfigActivity.this, NowActivity.class);
+                startActivity(now);
             }
+
 
             gcm = GoogleCloudMessaging.getInstance(mContext);
 
@@ -181,14 +184,24 @@ public class PreConfigActivity extends Activity {
                 final String imei = telephonyManager.getDeviceId();
                 Log.i("IMEI", imei + "");
 
-                // get name
-                final String name = "Kandarp";
 
-                // Get email account
+                // get name and email
+                // final String name = "Kandarp";
+                Bundle extras = getIntent().getExtras();
+                String name = "", possibleEmail = "";
+
+                // get data from the login activity
+                if (extras != null) {
+                    name = extras.getString("name");
+                    possibleEmail = extras.getString("email");
+                }
+
+                /*// Get email account
                 Account[] accounts = AccountManager.get(mContext).getAccounts();
-                Log.i("Email account", accounts[0].name + "");
-                String possibleEmail = accounts[0].name + "";
-                if (possibleEmail != null) {
+                Log.i("Email account", accounts[1].name + "");
+                String possibleEmail = accounts[1].name + "";
+                */
+                if (!possibleEmail.equals("")) {
                     String serverUrl = SERVER_URL;
                     Map<String, String> user = new HashMap<String, String>();
                     user.put("regId", regid);

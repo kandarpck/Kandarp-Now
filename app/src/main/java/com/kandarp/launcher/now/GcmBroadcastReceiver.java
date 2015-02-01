@@ -62,7 +62,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
                 mContext);
         builder.setTicker("Kandarp")
                 .setWhen(System.currentTimeMillis()).setContentTitle(title)
-                .setContentText(message).setSmallIcon(R.drawable.ic_launcher)
+                .setContentText(message).setSmallIcon(R.mipmap.ic_launcher)
                 .setAutoCancel(true).setContentIntent(intent)
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setDefaults(Notification.DEFAULT_ALL);
