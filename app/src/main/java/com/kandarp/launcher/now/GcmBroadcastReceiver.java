@@ -60,7 +60,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
                 notificationIntent, PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 mContext);
-        builder.setTicker("Gray Routes")
+        builder.setTicker("Kandarp")
                 .setWhen(System.currentTimeMillis()).setContentTitle(title)
                 .setContentText(message).setSmallIcon(R.drawable.ic_launcher)
                 .setAutoCancel(true).setContentIntent(intent)

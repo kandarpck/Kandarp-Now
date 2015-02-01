@@ -5,6 +5,7 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -382,6 +383,11 @@ public class PreConfigActivity extends Activity {
 
             if (results.equalsIgnoreCase("true")) {
                 Log.d(APP_TAG, "Registration complete");
+
+                // Start the main Now Activity
+                Intent now = new Intent(PreConfigActivity.this, NowActivity.class);
+                startActivity(now);
+
             } else {
 
                 Log.i(APP_TAG, "Status: " + results);
