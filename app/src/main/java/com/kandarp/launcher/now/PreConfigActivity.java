@@ -10,12 +10,14 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -51,6 +53,8 @@ public class PreConfigActivity extends Activity {
     private SharedPreferences mPrefs;
     private RegisterTask mRegisterTask;
 
+    private ProgressBar spinner;
+
     private static int getAppVersion(Context context) {
         try {
             PackageInfo packageInfo = context.getPackageManager()
@@ -72,9 +76,23 @@ public class PreConfigActivity extends Activity {
         mContext = this.getApplicationContext();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 
-        checkPlayServices();
+        spinner = (ProgressBar) findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);
+        int time = 10000;
+        generateDelay(time);
 
     }
+
+    private void generateDelay(int time) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                spinner.setVisibility(View.GONE);
+                checkPlayServices();
+            }
+        }, time);
+    }
+
 
     private void checkPlayServices() {
         // TODO Auto-generated method stub
