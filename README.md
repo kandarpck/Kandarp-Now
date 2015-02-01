@@ -15,6 +15,8 @@ Building a Personal Assistant that works for you and gives you the information w
 1. Heavy use of GCM
 2. Tickle messages from GCM to wake up device and manage sync
 3. Use of SyncAdapter
+4. Highly user friendly design
+5. Takes full advantage of Lollipop features including colors, cards, elevation, drop shadows, etc
 
 #Connection to my own search engine
 Integration pending. Will add later
