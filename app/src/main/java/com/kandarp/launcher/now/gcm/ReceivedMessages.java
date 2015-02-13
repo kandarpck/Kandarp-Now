@@ -1,4 +1,4 @@
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.gcm;
 
 /*
 created by Kandarp on 21-01-2015

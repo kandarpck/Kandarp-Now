@@ -13,24 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now.data;
+package com.kandarp.launcher.now.weather.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.kandarp.launcher.now.data.WeatherContract.LocationEntry;
-import com.kandarp.launcher.now.data.WeatherContract.WeatherEntry;
+import com.kandarp.launcher.now.weather.data.WeatherContract.LocationEntry;
+import com.kandarp.launcher.now.weather.data.WeatherContract.WeatherEntry;
 
 /**
  * Manages a local database for weather data.
  */
 public class WeatherDbHelper extends SQLiteOpenHelper {
 
+    public static final String DATABASE_NAME = "weather.db";
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
-
-    public static final String DATABASE_NAME = "weather.db";
 
     public WeatherDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -46,7 +45,7 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
                 LocationEntry.COLUMN_CITY_NAME + " TEXT NOT NULL, " +
                 LocationEntry.COLUMN_COORD_LAT + " REAL NOT NULL, " +
                 LocationEntry.COLUMN_COORD_LONG + " REAL NOT NULL, " +
-                "UNIQUE (" + LocationEntry.COLUMN_LOCATION_SETTING +") ON CONFLICT IGNORE"+
+                "UNIQUE (" + LocationEntry.COLUMN_LOCATION_SETTING + ") ON CONFLICT IGNORE" +
                 " );";
 
         final String SQL_CREATE_WEATHER_TABLE = "CREATE TABLE " + WeatherEntry.TABLE_NAME + " (" +

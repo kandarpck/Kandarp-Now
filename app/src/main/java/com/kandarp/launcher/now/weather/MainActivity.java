@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.weather;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -24,7 +24,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.kandarp.launcher.now.sync.SunshineSyncAdapter;
+import com.kandarp.launcher.now.R;
+import com.kandarp.launcher.now.SettingsActivity;
+import com.kandarp.launcher.now.weather.sync.SunshineSyncAdapter;
 
 
 public class MainActivity extends ActionBarActivity implements ForecastFragment.Callback {
@@ -60,7 +62,7 @@ public class MainActivity extends ActionBarActivity implements ForecastFragment.
             mTwoPane = false;
         }
 
-        ForecastFragment forecastFragment =  ((ForecastFragment)getSupportFragmentManager()
+        ForecastFragment forecastFragment = ((ForecastFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_forecast));
         forecastFragment.setUseTodayLayout(!mTwoPane);
 

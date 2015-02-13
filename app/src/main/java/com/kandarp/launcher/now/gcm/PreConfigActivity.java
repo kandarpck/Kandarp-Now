@@ -1,4 +1,4 @@
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.gcm;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +22,8 @@ import android.widget.ProgressBar;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.kandarp.launcher.now.NowActivity;
+import com.kandarp.launcher.now.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,7 +80,9 @@ public class PreConfigActivity extends Activity {
 
         spinner = (ProgressBar) findViewById(R.id.progressBar1);
         spinner.setVisibility(View.VISIBLE);
-        int time = 10000;
+
+        // delay time
+        int time = 10;
         generateDelay(time);
 
     }

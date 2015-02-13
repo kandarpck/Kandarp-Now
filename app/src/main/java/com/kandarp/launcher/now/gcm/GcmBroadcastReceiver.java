@@ -1,4 +1,4 @@
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.gcm;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.kandarp.launcher.now.R;
 
 public class GcmBroadcastReceiver extends BroadcastReceiver {
     static final String TAG = "KandarpNow_Service";

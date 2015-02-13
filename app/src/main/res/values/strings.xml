@@ -113,4 +113,10 @@
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
 
+
+    <string name="key_statistics">Key Stats</string>
+    <string name="price_info">Price Info</string>
+    <string name="charts">Charts</string>
+
+
 </resources>

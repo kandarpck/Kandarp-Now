@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.weather;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.kandarp.launcher.now.data.WeatherContract;
+import com.kandarp.launcher.now.R;
+import com.kandarp.launcher.now.weather.data.WeatherContract;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,6 +29,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Utility {
+    // Format used for storing dates in the database.  ALso used for converting those strings
+    // back into date objects for comparison/processing.
+    public static final String DATE_FORMAT = "yyyyMMdd";
+
     public static String getPreferredLocation(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getString(context.getString(R.string.pref_location_key),
@@ -57,10 +62,6 @@ public class Utility {
         Date date = WeatherContract.getDateFromDb(dateString);
         return DateFormat.getDateInstance().format(date);
     }
-
-    // Format used for storing dates in the database.  ALso used for converting those strings
-    // back into date objects for comparison/processing.
-    public static final String DATE_FORMAT = "yyyyMMdd";
 
     /**
      * Helper method to convert the database representation of the date into something to display
@@ -150,6 +151,7 @@ public class Utility {
 
     /**
      * Converts db date format to the format "Month day", e.g "June 24".
+     *
      * @param context Context to use for resource localization
      * @param dateStr The db formatted date string, expected to be of the form specified
      *                in Utility.DATE_FORMAT
@@ -204,6 +206,7 @@ public class Utility {
     /**
      * Helper method to provide the icon resource id according to the weather condition id returned
      * by the OpenWeatherMap call.
+     *
      * @param weatherId from OpenWeatherMap API response
      * @return resource id for the corresponding icon. -1 if no relation is found.
      */
@@ -239,6 +242,7 @@ public class Utility {
     /**
      * Helper method to provide the art resource id according to the weather condition id returned
      * by the OpenWeatherMap call.
+     *
      * @param weatherId from OpenWeatherMap API response
      * @return resource id for the corresponding image. -1 if no relation is found.
      */

@@ -24,12 +24,42 @@ import android.os.Build;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.kandarp.launcher.now.data.WeatherContract.LocationEntry;
-import com.kandarp.launcher.now.data.WeatherContract.WeatherEntry;
+import com.kandarp.launcher.now.weather.data.WeatherContract.LocationEntry;
+import com.kandarp.launcher.now.weather.data.WeatherContract.WeatherEntry;
 
 public class TestProvider extends AndroidTestCase {
 
     public static final String LOG_TAG = TestProvider.class.getSimpleName();
+    static final String KALAMAZOO_LOCATION_SETTING = "kalamazoo";
+    static final String KALAMAZOO_WEATHER_START_DATE = "20140625";
+    long locationRowId;
+
+    static ContentValues createKalamazooWeatherValues(long locationRowId) {
+        ContentValues weatherValues = new ContentValues();
+        weatherValues.put(WeatherEntry.COLUMN_LOC_KEY, locationRowId);
+        weatherValues.put(WeatherEntry.COLUMN_DATETEXT, KALAMAZOO_WEATHER_START_DATE);
+        weatherValues.put(WeatherEntry.COLUMN_DEGREES, 1.2);
+        weatherValues.put(WeatherEntry.COLUMN_HUMIDITY, 1.5);
+        weatherValues.put(WeatherEntry.COLUMN_PRESSURE, 1.1);
+        weatherValues.put(WeatherEntry.COLUMN_MAX_TEMP, 85);
+        weatherValues.put(WeatherEntry.COLUMN_MIN_TEMP, 35);
+        weatherValues.put(WeatherEntry.COLUMN_SHORT_DESC, "Cats and Dogs");
+        weatherValues.put(WeatherEntry.COLUMN_WIND_SPEED, 3.4);
+        weatherValues.put(WeatherEntry.COLUMN_WEATHER_ID, 42);
+
+        return weatherValues;
+    }
+
+    static ContentValues createKalamazooLocationValues() {
+        // Create a new map of values, where column names are the keys
+        ContentValues testValues = new ContentValues();
+        testValues.put(LocationEntry.COLUMN_LOCATION_SETTING, KALAMAZOO_LOCATION_SETTING);
+        testValues.put(LocationEntry.COLUMN_CITY_NAME, "Kalamazoo");
+        testValues.put(LocationEntry.COLUMN_COORD_LAT, 42.2917);
+        testValues.put(LocationEntry.COLUMN_COORD_LONG, -85.5872);
+
+        return testValues;
+    }
 
     // brings our database to an empty state
     public void deleteAllRecords() {
@@ -210,7 +240,7 @@ public class TestProvider extends AndroidTestCase {
 
         int count = mContext.getContentResolver().update(
                 LocationEntry.CONTENT_URI, updatedValues, LocationEntry._ID + "= ?",
-                new String[] { Long.toString(locationRowId)});
+                new String[]{Long.toString(locationRowId)});
 
         assertEquals(count, 1);
 
@@ -231,7 +261,6 @@ public class TestProvider extends AndroidTestCase {
         deleteAllRecords();
     }
 
-
     // The target api annotation is needed for the call to keySet -- we wouldn't want
     // to use this in our app, but in a test it's fine to assume a higher target.
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -240,39 +269,6 @@ public class TestProvider extends AndroidTestCase {
             destination.put(key, source.getAsString(key));
         }
     }
-
-    static final String KALAMAZOO_LOCATION_SETTING = "kalamazoo";
-    static final String KALAMAZOO_WEATHER_START_DATE = "20140625";
-
-    long locationRowId;
-
-    static ContentValues createKalamazooWeatherValues(long locationRowId) {
-        ContentValues weatherValues = new ContentValues();
-        weatherValues.put(WeatherEntry.COLUMN_LOC_KEY, locationRowId);
-        weatherValues.put(WeatherEntry.COLUMN_DATETEXT, KALAMAZOO_WEATHER_START_DATE);
-        weatherValues.put(WeatherEntry.COLUMN_DEGREES, 1.2);
-        weatherValues.put(WeatherEntry.COLUMN_HUMIDITY, 1.5);
-        weatherValues.put(WeatherEntry.COLUMN_PRESSURE, 1.1);
-        weatherValues.put(WeatherEntry.COLUMN_MAX_TEMP, 85);
-        weatherValues.put(WeatherEntry.COLUMN_MIN_TEMP, 35);
-        weatherValues.put(WeatherEntry.COLUMN_SHORT_DESC, "Cats and Dogs");
-        weatherValues.put(WeatherEntry.COLUMN_WIND_SPEED, 3.4);
-        weatherValues.put(WeatherEntry.COLUMN_WEATHER_ID, 42);
-
-        return weatherValues;
-    }
-
-    static ContentValues createKalamazooLocationValues() {
-        // Create a new map of values, where column names are the keys
-        ContentValues testValues = new ContentValues();
-        testValues.put(LocationEntry.COLUMN_LOCATION_SETTING, KALAMAZOO_LOCATION_SETTING);
-        testValues.put(LocationEntry.COLUMN_CITY_NAME, "Kalamazoo");
-        testValues.put(LocationEntry.COLUMN_COORD_LAT, 42.2917);
-        testValues.put(LocationEntry.COLUMN_COORD_LONG, -85.5872);
-
-        return testValues;
-    }
-
 
     // Inserts both the location and weather data for the Kalamazoo data set.
     public void insertKalamazooData() {

@@ -24,8 +24,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
-import com.kandarp.launcher.now.sync.SunshineSyncAdapter;
-import com.kandarp.launcher.now.data.WeatherContract;
+import com.kandarp.launcher.now.weather.data.WeatherContract;
+import com.kandarp.launcher.now.weather.sync.SunshineSyncAdapter;
 
 /**
  * A {@link android.preference.PreferenceActivity} that presents a set of application settings.

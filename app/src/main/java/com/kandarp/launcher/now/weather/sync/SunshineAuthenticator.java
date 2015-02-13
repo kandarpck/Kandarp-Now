@@ -1,4 +1,4 @@
-package com.kandarp.launcher.now.sync;
+package com.kandarp.launcher.now.weather.sync;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;

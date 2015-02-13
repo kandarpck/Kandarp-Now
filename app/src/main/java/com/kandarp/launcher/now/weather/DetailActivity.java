@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.weather;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,6 +23,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.kandarp.launcher.now.R;
+import com.kandarp.launcher.now.SettingsActivity;
 
 public class DetailActivity extends ActionBarActivity {
 

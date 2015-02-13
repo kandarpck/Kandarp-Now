@@ -13,4 +13,8 @@
     <color name="sunshine_light_blue">#ff64c2f4</color>
     <color name="sunshine_blue">#ff1ca8f4</color>
 
+
+    <color name="google_now_background">#E5E5E5</color>
+    <color name="change_red">#880000</color>
+    <color name="change_green">#00CC00</color>
 </resources>

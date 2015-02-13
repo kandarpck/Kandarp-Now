@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.weather;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,8 +34,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.kandarp.launcher.now.data.WeatherContract;
-import com.kandarp.launcher.now.data.WeatherContract.WeatherEntry;
+import com.kandarp.launcher.now.R;
+import com.kandarp.launcher.now.weather.data.WeatherContract;
+import com.kandarp.launcher.now.weather.data.WeatherContract.WeatherEntry;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -47,14 +48,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private static final String FORECAST_SHARE_HASHTAG = " #KandarpNow";
 
     private static final String LOCATION_KEY = "location";
-
-    private ShareActionProvider mShareActionProvider;
-    private String mLocation;
-    private String mForecast;
-    private String mDateStr;
-
     private static final int DETAIL_LOADER = 0;
-
     private static final String[] FORECAST_COLUMNS = {
             WeatherEntry.TABLE_NAME + "." + WeatherEntry._ID,
             WeatherEntry.COLUMN_DATETEXT,
@@ -70,7 +64,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             // weather data, even though they're stored in two different tables.
             WeatherContract.LocationEntry.COLUMN_LOCATION_SETTING
     };
-
+    private ShareActionProvider mShareActionProvider;
+    private String mLocation;
+    private String mForecast;
+    private String mDateStr;
     private ImageView mIconView;
     private TextView mFriendlyDateView;
     private TextView mDateView;
@@ -246,5 +243,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public void onLoaderReset(Loader<Cursor> loader) { }
+    public void onLoaderReset(Loader<Cursor> loader) {
+    }
 }

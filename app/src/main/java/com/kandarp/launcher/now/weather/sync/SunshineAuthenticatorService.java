@@ -1,4 +1,4 @@
-package com.kandarp.launcher.now.sync;
+package com.kandarp.launcher.now.weather.sync;
 
 import android.app.Service;
 import android.content.Intent;

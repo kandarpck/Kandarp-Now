@@ -13,14 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kandarp.launcher.now.gcm.PreConfigActivity;
+
 /**
  * Created by Kandarp on 2/1/2015.
  */
 public class LoginActivity extends Activity {
+    public static final String REG_ID = "registration_id";
     private EditText ed1, ed2;
     private Button bt1, bt2;
     private SharedPreferences mPrefs;
-    public static final String REG_ID = "registration_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
