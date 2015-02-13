@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.kandarp.launcher.now.geofence_reminders.GeofenceActivity;
 import com.kandarp.launcher.now.stocks.StocksActivity;
+import com.kandarp.launcher.now.traffic.DirectionsActivity;
 import com.kandarp.launcher.now.weather.MainActivity;
 
 /**
@@ -17,7 +18,7 @@ import com.kandarp.launcher.now.weather.MainActivity;
  */
 public class NowActivity extends Activity {
 
-    Button weather, stocks, places, movies, location, geofence;
+    Button weather, stocks, places, movies, location, geofence, directions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,15 @@ public class NowActivity extends Activity {
             public void onClick(View v) {
                 Intent geofence = new Intent(NowActivity.this, GeofenceActivity.class);
                 startActivity(geofence);
+            }
+        });
+
+        directions = (Button) findViewById(R.id.directions);
+        directions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent directions = new Intent(NowActivity.this, DirectionsActivity.class);
+                startActivity(directions);
             }
         });
 
