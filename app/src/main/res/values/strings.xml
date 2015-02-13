@@ -113,10 +113,16 @@
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
 
-
+    // for graphs
     <string name="key_statistics">Key Stats</string>
     <string name="price_info">Price Info</string>
     <string name="charts">Charts</string>
+
+
+    // for geofence
+    <string name="geofence_enter">Now entering %1$s</string>
+    <string name="geofence_dwell">Dwelling in %1$s</string>
+    <string name="geofence_exit">Now exiting %1$s</string>
 
 
 </resources>

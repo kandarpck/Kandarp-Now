@@ -13,11 +13,11 @@
         android:text="Weather" />
 
     <Button
-        android:id="@+id/location"
+        android:id="@+id/geofence"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Location" />
+        android:text="Geofence Reminders" />
 
     <Button
         android:id="@+id/stocks"
@@ -39,4 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Places" />
+
+    <Button
+        android:id="@+id/stepdetect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Step Detector" />
 </LinearLayout>
