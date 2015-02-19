@@ -2,4 +2,34 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="drawer_width_extras">240dp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+
+    <dimen name="demo_title_section_margin">10dp</dimen>
+    <dimen name="demo_title_section_margin_bottom">1dp</dimen>
+    <dimen name="demo_title_section_margin_top">3dp</dimen>
+    <dimen name="demo_title_section_textsize">18sp</dimen>
+
+
+    <!--  Card customization ***************************************************  -->
+
+    <!-- Card -->
+    <dimen name="card_base_empty_height">72dp</dimen>
+    <dimen name="card_extras_birth_width">350dp</dimen>
+
+    <dimen name="carddemo_extras_gplay_grid_columnwidth">140dp</dimen>
+    <dimen name="carddemo_extras_gplay_grid_columnwidth_card">125dp</dimen>
+
+    <dimen name="card_rose">250dp</dimen>
+
+    <!--Staggered -->
+    <dimen name="carddemo_extras_basestaggered_height1">120dp</dimen>
+    <dimen name="carddemo_extras_basestaggered_height2">150dp</dimen>
+    <dimen name="carddemo_extras_basestaggered_height3">180dp</dimen>
+
+
+    <dimen name="card_thumbnail_width">125dp</dimen>
+    <dimen name="card_thumbnail_height">100dp</dimen>
+
 </resources>

@@ -48,7 +48,7 @@ public class PreConfigActivity extends Activity {
     static final String APP_TAG = "KandarpNow_Main";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final String PROPERTY_ON_SERVER_EXPIRATION_TIME = "onServerExpirationTimeMs";
-    String SENDER_ID = "928433998648";
+    String SENDER_ID = "719352023481";
     GoogleCloudMessaging gcm;
     AtomicInteger msgId = new AtomicInteger();
     private Context mContext;

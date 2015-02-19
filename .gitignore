@@ -20,6 +20,10 @@
 bin/
 gen/
 
+#Developer Keys
+app/src/main/java/com/kandarp/launcher/now/movies/youtube/DeveloperKey.java
+
+
 # Gradle files
 .gradle/
 build/

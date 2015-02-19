@@ -3,12 +3,13 @@ package com.kandarp.launcher.now;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.kandarp.launcher.now.geofence_reminders.GeofenceActivity;
+import com.kandarp.launcher.now.movies.app.MovieYoutubeActivity;
 import com.kandarp.launcher.now.stocks.StocksActivity;
 import com.kandarp.launcher.now.traffic.DirectionsActivity;
 import com.kandarp.launcher.now.weather.MainActivity;
@@ -18,14 +19,14 @@ import com.kandarp.launcher.now.weather.MainActivity;
  */
 public class NowActivity extends Activity {
 
-    Button weather, stocks, places, movies, location, geofence, directions;
+    CardView weather, stocks, places, movies, location, geofence, directions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.now_activity);
 
-        weather = (Button) findViewById(R.id.weather);
+        weather = (CardView) findViewById(R.id.weather);
         weather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +35,7 @@ public class NowActivity extends Activity {
             }
         });
 
-        stocks = (Button) findViewById(R.id.stocks);
+        stocks = (CardView) findViewById(R.id.stocks);
         stocks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +44,7 @@ public class NowActivity extends Activity {
             }
         });
 
-        geofence = (Button) findViewById(R.id.geofence);
+        geofence = (CardView) findViewById(R.id.geofence);
         geofence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,12 +53,21 @@ public class NowActivity extends Activity {
             }
         });
 
-        directions = (Button) findViewById(R.id.directions);
+        directions = (CardView) findViewById(R.id.directions);
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent directions = new Intent(NowActivity.this, DirectionsActivity.class);
                 startActivity(directions);
+            }
+        });
+
+        movies = (CardView) findViewById(R.id.movies);
+        movies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent movies = new Intent(NowActivity.this, MovieYoutubeActivity.class);
+                startActivity(movies);
             }
         });
 
