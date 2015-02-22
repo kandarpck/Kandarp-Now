@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kandarp.launcher.now;
+package com.kandarp.launcher.now.weather;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
+import com.kandarp.launcher.now.R;
 import com.kandarp.launcher.now.weather.data.WeatherContract;
 import com.kandarp.launcher.now.weather.sync.SunshineSyncAdapter;
 

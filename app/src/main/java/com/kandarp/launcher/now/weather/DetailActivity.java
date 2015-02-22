@@ -25,7 +25,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.kandarp.launcher.now.R;
-import com.kandarp.launcher.now.SettingsActivity;
 
 public class DetailActivity extends ActionBarActivity {
 

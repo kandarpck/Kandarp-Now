@@ -82,7 +82,7 @@ public class PreConfigActivity extends Activity {
         spinner.setVisibility(View.VISIBLE);
 
         // delay time
-        int time = 9000;
+        int time = 9;//000;
         generateDelay(time);
 
     }
