@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/progressBarServer"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/directions"
@@ -20,45 +13,48 @@
         app:cardUseCompatPadding="true">
 
         <LinearLayout
-            android:id="@+id/search_results_list_query_details"
+            android:id="@+id/search_results_list_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="5dp">
 
+
             <TextView
-                android:id="@+id/search_list_query_data"
+                android:id="@+id/search_list_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:ellipsize="marquee"
                 android:fontFamily="sans-serif-condensed"
                 android:maxLines="1"
-                android:paddingLeft="3dp"
                 android:singleLine="true"
                 android:textColor="#006699"
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/search_list_query_number"
-                android:layout_width="wrap_content"
+                android:id="@+id/search_list_url"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="marquee"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif-condensed"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="#006699"
-                android:textSize="22sp" />
+                android:textAppearance="@color/black"
+                android:textColor="@color/card_undobar_material_text_color"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/search_list_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed"
+                android:maxLines="4"
+                android:padding="5sp"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
-
-    <ListView
-        android:id="@+id/search_results"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp" />
-
 </LinearLayout>
-    

@@ -31,6 +31,8 @@ dependencies {
     compile 'com.github.gabrielemariotti.cards:library:+'
     compile 'com.github.gabrielemariotti.cards:library-extra:+'
     compile 'com.koushikdutta.ion:ion:+'
+    compile 'com.nineoldandroids:library:+'
     compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile files('libs/com.haarman.listviewanimations-2.5.2.jar')
 
 }

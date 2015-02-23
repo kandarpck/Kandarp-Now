@@ -3,24 +3,27 @@ package com.kandarp.launcher.now.search;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.haarman.listviewanimations.swinginadapters.prepared.AlphaInAnimationAdapter;
 import com.kandarp.launcher.now.R;
+import com.koushikdutta.async.future.Future;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,17 +31,23 @@ import java.util.Map;
  */
 public class SearchableActivity extends Activity {
 
+
     static final String SERVER_URL = "http://104.155.226.189/solr/collection1/select";
     private static String APP_TAG = "Searchable Activity";
-    TextView server_response;
-    private KandarpSearch mSearch;
-    private String serverResponse = "";
+    List<String> content = new ArrayList<>();
+    List<String> url = new ArrayList<>();
+    List<String> title = new ArrayList<>();
+    ListView listView;
+    List<SearchDataRow> rowItems;
     private ProgressBar waitForServer;
+    private TextView queryData, queryResults;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.search_now_web);
+
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -50,48 +59,22 @@ public class SearchableActivity extends Activity {
 
     private void doMySearch(String query) {
 
-        server_response = (TextView) findViewById(R.id.server_response);
         waitForServer = (ProgressBar) findViewById(R.id.progressBarServer);
         waitForServer.setVisibility(View.VISIBLE);
+        queryData = (TextView) findViewById(R.id.search_list_query_data);
+        queryResults = (TextView) findViewById(R.id.search_list_query_number);
+
 
         if (query.length() > 0) {
+            queryData.setText("Query: " + query);
             Log.d("Query for search", query);
-            Map<String, String> user = new HashMap<String, String>();
+            Map<String, String> user = new HashMap<>();
             user.put("q", query);
             user.put("wt", "json");
             user.put("indent", "true");
 
-            try {
-                mSearch = new KandarpSearch();
-                mSearch.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, user);
-            } catch (Exception e) {
-                Log.d(APP_TAG, "Error while querying");
-                e.printStackTrace();
-                // show error message
-            }
-
-        } else {
-            // show error message
-            Log.i(APP_TAG, "Query Object Null. Abort Search");
-        }
-
-    }
-
-    public class KandarpSearch extends AsyncTask<Map<String, String>, Integer, String> {
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected String doInBackground(Map<String, String>... params) {
-            URL preUrl = null;
-            URL postUrl = null;
-            try {
-                Log.i("Registering to URL", SERVER_URL);
-                preUrl = new URL(SERVER_URL);
-            } catch (MalformedURLException e) {
-                throw new IllegalArgumentException("invalid url: " + SERVER_URL);
-            }
             StringBuilder bodyBuilder = new StringBuilder();
-            Iterator<Map.Entry<String, String>> iterator = params[0].entrySet()
+            Iterator<Map.Entry<String, String>> iterator = user.entrySet()
                     .iterator();
             while (iterator.hasNext()) {
                 Map.Entry<String, String> param = iterator.next();
@@ -101,65 +84,149 @@ public class SearchableActivity extends Activity {
                     bodyBuilder.append('&');
                 }
             }
-            try {
-                String body = bodyBuilder.toString().trim().replaceAll(" ", "+");
-                postUrl = new URL(preUrl + "?" + body);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+            String body = bodyBuilder.toString().trim().replaceAll(" ", "%20");
+            final String solrUrl = SERVER_URL + "?" + body;
+            Log.d(APP_TAG, solrUrl);
 
-            HttpURLConnection connGet = null;
-            try {
+            Future<JsonObject> jsonObjectFuture = Ion.with(this)
+                    .load(solrUrl)
+                    .asJsonObject()
+                    .setCallback(new FutureCallback<JsonObject>() {
+                        @Override
+                        public void onCompleted(Exception e, JsonObject result) {
+                            waitForServer.setVisibility(View.GONE);
 
-                Log.d(APP_TAG, "GET from data from Server" + postUrl);
-                connGet = (HttpURLConnection) postUrl.openConnection();
-                connGet.setRequestMethod("GET");
+                            if (e != null) {
+                                e.printStackTrace();
+                                Toast.makeText(SearchableActivity.this, "Error loading", Toast.LENGTH_LONG).show();
+                                return;
+                            }
 
-                // handle the response
-                int status = connGet.getResponseCode();
-                if (status != 200) {
-                    throw new IOException("Post failed with error code "
-                            + status);
-                } else {
-                    // Get the server response
-                    BufferedReader reader;
-                    reader = new BufferedReader(new InputStreamReader(
-                            connGet.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
+                            try {
 
-                    // Read Server Response
-                    while ((line = reader.readLine()) != null) {
-                        // Append server response in string
-                        sb.append(line + "\n");
-                    }
-                    serverResponse = sb.toString();
+                                queryResults.setText("Pages: " +
+                                        result.getAsJsonObject("response")
+                                                .get("numFound")
+                                                .getAsString());
+                                
+                                /*Log.e(APP_TAG, result.getAsJsonObject("response").toString());
+                                Log.e(APP_TAG, result.getAsJsonObject("response").get("numFound").getAsString());
+                                Log.e(APP_TAG, result.getAsJsonObject("response").getAsJsonArray("docs").toString());
+                                Log.e(APP_TAG, result.getAsJsonObject("response").getAsJsonArray("docs").get(1).toString());
+                                Log.e(APP_TAG, result.getAsJsonObject("response").getAsJsonArray("docs").get(1).getAsJsonObject().get("content").toString());
+                                */
 
-                    Log.d("GET passed", status + "");
-                    Log.d("HTTP RESPONSE", serverResponse);
+                                for (int k = 0;
+                                     k < result.getAsJsonObject("response").getAsJsonArray("docs").size();
+                                     k++) {
+                                    /*
+                                    Log.w(APP_TAG, result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("content")
+                                            .toString());
+                                    Log.w(APP_TAG, result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("url").toString());
+                                    Log.w(APP_TAG, result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("title").toString());
+                                    */
 
-                }
-                connGet.disconnect();
+                                    content.add(result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("content")
+                                            .toString());
+                                    url.add(result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("url").toString());
 
-            } catch (ProtocolException p) {
-                p.printStackTrace();
-                return "";
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "";
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.d(APP_TAG, "Unknown error");
-                return "";
-            }
+                                    title.add(result
+                                            .getAsJsonObject("response")
+                                            .getAsJsonArray("docs")
+                                            .get(k)
+                                            .getAsJsonObject()
+                                            .get("title").toString());
 
-            return serverResponse;
-        }
 
-        @Override
-        protected void onPostExecute(String response) {
+                                } // end for
+                            }//end try
+                            catch (Exception ex) {
+                                ex.printStackTrace();
+
+                            }// end catch
+
+
+                            try {
+
+                                rowItems = new ArrayList<SearchDataRow>();
+                                for (int i = 0; i < content.size(); i++) {
+                                    SearchDataRow item = new SearchDataRow(
+                                            title.get(i),
+                                            content.get(i),
+                                            url.get(i)
+                                    );
+                                    rowItems.add(item);
+
+                                }// end for
+                                listView = (ListView) findViewById(
+                                        R.id.search_results);
+                                SearchCustomAdapter searchCustomAdapter =
+                                        new SearchCustomAdapter
+                                                (getApplicationContext(), R.layout.search_now_web_list_item, rowItems);
+                                AlphaInAnimationAdapter alphaInAnimationAdapter =
+                                        new AlphaInAnimationAdapter(
+                                                searchCustomAdapter);
+
+                                // Assign the ListView to the AnimationAdapter and vice
+                                // versa
+                                alphaInAnimationAdapter.setAbsListView(listView);
+
+                                listView.setAdapter(alphaInAnimationAdapter);
+
+
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                                    @Override
+                                    public void onItemClick(AdapterView<?> arg0, View arg1,
+                                                            int arg2, long arg3) {
+                                        Intent i = new Intent(Intent.ACTION_VIEW);
+                                        i.setData(Uri.parse(url.get(arg2).replaceAll("\"", "")));
+                                        startActivity(i);
+
+                                    }// end item click
+                                });// end listener
+
+                            }// end try
+                            catch (Exception el) {
+                                el.printStackTrace();
+
+                            }// end catch
+
+                        }// end on completed
+                    });// end future callback
+
+
+        } else {
+            queryData.setText("Invalid Query. Try again");
             waitForServer.setVisibility(View.GONE);
-            server_response.setText(response);
+            Toast.makeText(SearchableActivity.this, "Error loading", Toast.LENGTH_LONG).show();
+
         }
     }
+
 }

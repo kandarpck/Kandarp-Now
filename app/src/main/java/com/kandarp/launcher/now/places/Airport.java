@@ -3,7 +3,6 @@ package com.kandarp.launcher.now.places;
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,17 +31,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/*
- * MyMapActivity class forms part of Map application
- * in Mobiletuts+ tutorial series:
- * Using Google Maps and Google Places in Android Apps
- * 
- * This version of the class is for the final part of the series.
- * 
- * Sue Smith
- * March/ April 2013
- */
-public class Airport extends Activity implements LocationListener {
+public class Airport extends Activity {
 
     //max
     private final int MAX_PLACES = 20;//most returned from google
@@ -76,10 +65,16 @@ public class Airport extends Activity implements LocationListener {
         if (theMap == null) {
             //get the map
             theMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            theMap.setMyLocationEnabled(true);
+            theMap.getUiSettings().setZoomGesturesEnabled(true);
+            theMap.getUiSettings().setCompassEnabled(true);
+            theMap.getUiSettings().setMyLocationButtonEnabled(true);
+            theMap.getUiSettings().setRotateGesturesEnabled(true);
+            theMap.setTrafficEnabled(true);
+
             //check in case map/ Google Play services not available
             if (theMap != null) {
                 //ok - proceed
-                theMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 //create marker array
                 placeMarkers = new Marker[MAX_PLACES];
                 //update location
@@ -89,28 +84,14 @@ public class Airport extends Activity implements LocationListener {
         }
     }
 
-    //location listener functions
+    /*//location listener functions
 
     @Override
     public void onLocationChanged(Location location) {
         Log.v("MyMapActivity", "location changed");
         updatePlaces();
     }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Log.v("MyMapActivity", "provider disabled");
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        Log.v("MyMapActivity", "provider enabled");
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.v("MyMapActivity", "status changed");
-    }
+*/
 
     /*
      * update the place markers
@@ -134,9 +115,8 @@ public class Airport extends Activity implements LocationListener {
                 .icon(BitmapDescriptorFactory.fromResource(userIcon))
                 .snippet("Your last recorded location"));
         //move to location
-        //CameraPosition cp=new CameraPosition(lastLatLng, 17, 30, 70);
-        //theMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
         theMap.animateCamera(CameraUpdateFactory.newLatLng(lastLatLng), 3000, null);
+        theMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 13));
 
         //build places query string
         String placesSearchStr = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
@@ -148,14 +128,12 @@ public class Airport extends Activity implements LocationListener {
         //execute query
         new GetPlaces().execute(placesSearchStr);
 
-        locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (theMap != null) {
-            locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
         }
     }
 
@@ -164,7 +142,6 @@ public class Airport extends Activity implements LocationListener {
         super.onPause();
 
         if (theMap != null) {
-            locMan.removeUpdates(this);
             Log.v("Onpause", "before finish");
             finish();
             Log.v("Onpause", "before finish");

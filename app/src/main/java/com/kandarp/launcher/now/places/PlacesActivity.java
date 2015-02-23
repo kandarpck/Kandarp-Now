@@ -37,9 +37,14 @@ public class PlacesActivity extends Activity {
 
         theMap = ((MapFragment) getFragmentManager().findFragmentById(
                 R.id.map)).getMap();
+        theMap.setMyLocationEnabled(true);
+        theMap.getUiSettings().setZoomGesturesEnabled(true);
+        theMap.getUiSettings().setCompassEnabled(true);
+        theMap.getUiSettings().setMyLocationButtonEnabled(true);
+        theMap.getUiSettings().setRotateGesturesEnabled(true);
+        theMap.setTrafficEnabled(true);
 
         if (theMap != null) {
-            theMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             updatePlaces();
         }
 
@@ -64,6 +69,7 @@ public class PlacesActivity extends Activity {
                 .snippet("Your last recorded location"));
         CameraPosition cp = new CameraPosition(lastLatLng, 17, 30, 70);
         theMap.animateCamera(CameraUpdateFactory.newCameraPosition(cp));
+        theMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 17));
         // theMap.animateCamera(CameraUpdateFactory.newLatLng(lastLatLng), 3000,
         // null);
 
