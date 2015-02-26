@@ -6,7 +6,8 @@ Building a Personal Assistant that works for you and gives you the information w
 ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
 Presenatation Slides
-![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
+![alt tag](https://raw.githubusercontent.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
+
 
 ##Features (Till now)
 - Cloud Connected for personal registration and data storage
@@ -20,7 +21,8 @@ Presenatation Slides
 - Voice typing and Search done
 
 ##TODO
-- Make a TODO list. Ironic, isn't it? :P
+- Make a TODO list. 
+#**Ironic, isn't it? :P**
 
 ##Best Practices followed
 - Heavy use of GCM. Tickle messages from GCM to wake up device and manage sync
