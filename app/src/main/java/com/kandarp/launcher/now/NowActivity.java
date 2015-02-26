@@ -32,10 +32,11 @@ public class NowActivity extends Activity {
         setContentView(R.layout.now_activity);
         try {
             getActionBar().setDisplayShowTitleEnabled(false);
-        } finally {
-
-        }
-
+        } 
+        	catch(Exception k)
+        	{
+        		k.printStackTrace();
+        	}
         weather = (CardView) findViewById(R.id.weather);
         weather.setOnClickListener(new View.OnClickListener() {
             @Override

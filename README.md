@@ -1,25 +1,39 @@
-##Kandarp-Now
+#Kandarp-Now
 
 Building a Personal Assistant that works for you and gives you the information when you need. 
 
-#Features (Till now)
-1. Cloud Connected for personal registration and data storage
-2. Google Cloud Messaging using more than 7 distinct cases to cater to all the scenarios of app use
-3. Weather Data
-4. Traffic and Location Data
+##Architecture
+![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
-....
---
+Presenatation Slides
+![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/BE Project Presentation Feb-March 2015.pdf)
 
-#Best Practices followed
-1. Heavy use of GCM
-2. Tickle messages from GCM to wake up device and manage sync
-3. Use of SyncAdapter
-4. Highly user friendly design
-5. Takes full advantage of Lollipop features including colors, cards, elevation, drop shadows, etc
+##Features (Till now)
+- Cloud Connected for personal registration and data storage
+- Google Cloud Messaging *(7 distinct cases to cater to all the scenarios of app use)*
+- Weather Cards *(OpenWeather API)*
+- Traffic and Location Data *(Time to home and work using Maps API)*
+- Movies, Trailers and recent trending songs *(YouTube API)*
+- Finance, Stocks *(Yahoo Finance API)*
+- **Places:** Hospitals, Restaurants, ATMs, Airport, etc *(Places API and Maps API)*
+- Connected to **my Search Engine** with an option to search on other as well
+- Voice typing and Search done
+
+##TODO
+- Make a TODO list. Ironic, isn't it? :P
+
+##Best Practices followed
+- Heavy use of GCM. Tickle messages from GCM to wake up device and manage sync
+- Use of SyncAdapter
+- Takes full advantage of Lollipop features including colors, cards, elevation, drop shadows, etc
 
 ##Connection to my own search engine
-Integration pending. Will add later
+- **Entire configuration set up on Google Compute Engine**
+- Apache Nutch used to crawl **~70000** web pages and sent to 
+- Solr server set up and running.
+- All data parsed, stored, cleansed, optimized and cached
+- Used inverted index for faster query processing
+- *Server currently shut down to save costs. Search functionality in the app may not work :(*
 
 ##Installation Steps
 After project completion
