@@ -6,7 +6,7 @@ Building a Personal Assistant that works for you and gives you the information w
 ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
 ##Addtional Materials
-![Presentation Slides](https://raw.githubusercontent.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
+- [Presentation files](Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
 
 
 ##Features (Till now)
@@ -22,7 +22,7 @@ Building a Personal Assistant that works for you and gives you the information w
 
 ##TODO
 - Make a TODO list. 
-#**Ironic, isn't it? :P**
+- **Ironic, isn't it? :P**
 
 ##Best Practices followed
 - Heavy use of GCM. Tickle messages from GCM to wake up device and manage sync
