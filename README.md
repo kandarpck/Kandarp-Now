@@ -5,8 +5,8 @@ Building a Personal Assistant that works for you and gives you the information w
 ##Architecture
 ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
-Presenatation Slides
-![alt tag](https://raw.githubusercontent.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
+##Addtional Materials
+![Presentation Slides](https://raw.githubusercontent.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
 
 
 ##Features (Till now)
