@@ -6,7 +6,7 @@ Building a Personal Assistant that works for you and gives you the information w
 ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
 Presenatation Slides
-![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/BE Project Presentation Feb-March 2015.pdf)
+![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
 
 ##Features (Till now)
 - Cloud Connected for personal registration and data storage
@@ -29,9 +29,9 @@ Presenatation Slides
 
 ##Connection to my own search engine
 - **Entire configuration set up on Google Compute Engine**
-- Apache Nutch used to crawl **~70000** web pages and sent to 
+- Apache Nutch used to crawl **~70000** web pages and created segments to be used by Apache Solr
 - Solr server set up and running.
-- All data parsed, stored, cleansed, optimized and cached
+- All data parsed, stored, cleansed, optimized and cached by Solr Configuration
 - Used inverted index for faster query processing
 - *Server currently shut down to save costs. Search functionality in the app may not work :(*
 
