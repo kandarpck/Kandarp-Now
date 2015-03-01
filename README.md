@@ -3,9 +3,24 @@
 Building a Personal Assistant that works for you and gives you the information when you need. 
 
 ##Architecture
+
+**High Level Framework**
+-
+
+**GCM Framework**
 ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
-##Addtional Materials
+**Backend Setup**
+-
+
+**Apache Nutch**
+- A well matured, production ready crawler. It enables fine grained configuration, relying on Apache Hadoop data structures, which are great for batch processing.
+
+**Apache Solr**
+-
+
+
+##Additional Materials
 - [Presentation files](Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
 
 
@@ -20,9 +35,6 @@ Building a Personal Assistant that works for you and gives you the information w
 - Connected to **my Search Engine** with an option to search on other as well
 - Voice typing and Search done
 
-##TODO
-- Make a TODO list. 
-- **Ironic, isn't it? :P**
 
 ##Best Practices followed
 - Heavy use of GCM. Tickle messages from GCM to wake up device and manage sync
@@ -37,5 +49,18 @@ Building a Personal Assistant that works for you and gives you the information w
 - Used inverted index for faster query processing
 - *Server currently shut down to save costs. Search functionality in the app may not work :(*
 
+##Screenshots
+-
+
 ##Installation Steps
-After project completion
+- After project completion
+
+
+##TODO
+- Proper Introduction
+- Architecture Diagrams
+- Use Case, Class, State Transition Diagrams
+- Screenshots
+- Final Report
+- Setup Details and How to use
+- Update Features, Best Practices
