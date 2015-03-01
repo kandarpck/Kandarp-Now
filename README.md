@@ -5,20 +5,23 @@ Building a Personal Assistant that works for you and gives you the information w
 ##Architecture
 
 **High Level Framework**
--
-
-**GCM Framework**
-![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
+- TODO
 
 **Backend Setup**
--
+- TODO
+
+**GCM Framework**
+- ![alt tag](https://raw.github.com/kandarpck/Kandarp-Now/master/assets/architecture.png)
 
 **Apache Nutch**
 - A well matured, production ready crawler. It enables fine grained configuration, relying on Apache Hadoop data structures, which are great for batch processing.
+- TODO
 
 **Apache Solr**
--
+- TODO
 
+**Google Compute Engine**
+- TODO
 
 ##Additional Materials
 - [Presentation files](Kandarp-Now/master/assets/BE%20Project%20Presentation%20Feb-March%202015.pdf)
