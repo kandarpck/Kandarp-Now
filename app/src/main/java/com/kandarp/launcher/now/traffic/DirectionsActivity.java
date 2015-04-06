@@ -93,9 +93,9 @@ public class DirectionsActivity extends FragmentActivity {
 
             ((TextView) view.findViewById(R.id.place_name)).setText("Traffic Information");
             ((TextView) view.findViewById(R.id.title_name))
-                    .setText("Distance: " + distance);
+                    .setText("Distance: " + distance + " kms");
             ((TextView) view.findViewById(R.id.title_count))
-                    .setText("Time to Destination: ");
+                    .setText("Time to Destination: 47 mins");
 
             ((ViewPager) collection).addView(view, 0);
 

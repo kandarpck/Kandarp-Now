@@ -2,8 +2,10 @@ package com.kandarp.launcher.now.reminders;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -14,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.kandarp.launcher.now.R;
 
 
 public class Main extends ActionBarActivity {
@@ -26,7 +30,13 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.reminders_activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.primaryColorDark));
+            getSupportActionBar().setBackgroundDrawable(
+                    new ColorDrawable(Color.parseColor("#3F51B5")));
+        }
 
         //Initialize variables
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -89,14 +99,6 @@ public class Main extends ActionBarActivity {
             case 1:
                 getSupportActionBar().setTitle(getResources().getStringArray(R.array.drawer_items_arrays)[position]);
                 fragment = new Expired();
-                break;
-            case 2:
-                Intent intent = new Intent(this, Settings.class);
-                startActivity(intent);
-                return;
-            case 3:
-                getSupportActionBar().setTitle(getResources().getStringArray(R.array.drawer_items_arrays)[position]);
-                fragment = new About();
                 break;
         }
 

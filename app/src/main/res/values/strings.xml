@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Kandarp Now</string>
     <string name="hello_world">Connecting to the server. Please wait..</string>
     <string name="action_settings">Settings</string>
 
-    <!--
-        Used in Action Bar, and in AndroidManifest to tell the device the name of this app.
-        It's to keep this short, so your launcher icon isn't displayed with "The greatest Wea"
-        or something similar.
-   -->
+    <string name="new_reminder">New Reminder</string>
+    <string name="reminder">Reminder</string>
+    <string name="settings">Settings</string>
 
+    <!--EMPTY LABELS-->
+    <string name="upcoming_empty">No upcoming reminders</string>
+    <string name="expired_empty">No expired reminders</string>
+
+    <!--DIALOG LABELS-->
+    <string name="positive_button">Ok</string>
+    <string name="negative_button">Cancel</string>
+
+    <!--SORT-->
+    <string name="reminder_sort">Sort by</string>
+    <string name="sort_date_time">Date and Time</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_location">Location</string>
+
+    <!--PERTAINING TO THE DRAWER-->
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string-array name="drawer_items_arrays">
+        <item>Upcoming</item>
+        <item>Expired</item>
+    </string-array>
+
+    <!--STRINGS FOR REMINDER LAYOUT-->
+    <string name="reminder_delete">Delete</string>
+    <string name="reminder_delete_dialog_title">Delete Reminder?</string>
+    <string name="reminder_delete_dialog_message">This action cannot be reversed.</string>
+
+    <!--STRINGS FOR EXPIRED REMINDERS DIALOG-->
+    <string name="expired_reminder_delete_title">Delete Expired Reminders?</string>
+    <string name="expired_reminder_delete_message">This will permanently delete all expired reminders.</string>
+
+    <!--STRINGS FOR NEW REMINDERS LAYOUT-->
+    <string name="new_reminder_done">Done</string>
+    <string name="new_reminder_name">Reminder name</string>
+    <string name="new_reminder_location">Location (optional)</string>
+    <string name="new_reminder_date_time_label">Date and Time</string>
+    <string name="new_reminder_notes">Notes (optional)</string>
+
+    <!--STRINGS FOR ABOUT LAYOUT-->
+    <string name="about_label">Reminders</string>
+    <string name="about_sub_label">A clean and concise reminders application for Android. \n\nThis application is free and open source software.</string>
     <!--
          By convention, "action" denotes that this String will be used as the label for an Action,
          typically from the action bar.  The ActionBar is limited real estate, so shorter is better.

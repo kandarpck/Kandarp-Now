@@ -11,9 +11,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
-import com.kandarp.launcher.now.geofence_reminders.GeofenceActivity;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.kandarp.launcher.now.movies.app.MovieYoutubeActivity;
+import com.kandarp.launcher.now.reminders.Main;
 import com.kandarp.launcher.now.search.SearchableActivity;
 import com.kandarp.launcher.now.stocks.StocksActivity;
 import com.kandarp.launcher.now.traffic.DirectionsActivity;
@@ -24,7 +29,8 @@ import com.kandarp.launcher.now.weather.MainActivity;
  */
 public class NowActivity extends Activity {
 
-    CardView weather, stocks, places, movies, location, geofence, directions;
+    CardView weather, stocks, places, movies, location, reminders, directions, navigation, nearby;
+    int PLACE_PICKER_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +38,9 @@ public class NowActivity extends Activity {
         setContentView(R.layout.now_activity);
         try {
             getActionBar().setDisplayShowTitleEnabled(false);
-        } 
-        	catch(Exception k)
-        	{
-        		k.printStackTrace();
-        	}
+        } catch (Exception k) {
+            k.printStackTrace();
+        }
         weather = (CardView) findViewById(R.id.weather);
         weather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +59,12 @@ public class NowActivity extends Activity {
             }
         });
 
-        geofence = (CardView) findViewById(R.id.geofence);
-        geofence.setOnClickListener(new View.OnClickListener() {
+        reminders = (CardView) findViewById(R.id.remindeers);
+        reminders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent geofence = new Intent(NowActivity.this, GeofenceActivity.class);
-                startActivity(geofence);
+                Intent reminders = new Intent(NowActivity.this, Main.class);
+                startActivity(reminders);
             }
         });
 
@@ -70,6 +74,15 @@ public class NowActivity extends Activity {
             public void onClick(View v) {
                 Intent directions = new Intent(NowActivity.this, DirectionsActivity.class);
                 startActivity(directions);
+            }
+        });
+
+        navigation = (CardView) findViewById(R.id.navigation);
+        navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.instamaps");
+                startActivity(launchIntent);
             }
         });
 
@@ -92,7 +105,35 @@ public class NowActivity extends Activity {
             }
         });
 
+        nearby = (CardView) findViewById(R.id.nearby);
+        nearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
+                Context context = getApplicationContext();
+                try {
+                    startActivityForResult(builder.build(context), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
