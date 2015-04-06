@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/category_reminders"
+        android:key="key_category_reminders">
+        <CheckBoxPreference
+            android:title="@string/reminders_auto_delete_expired"
+            android:key="key_auto_delete_expired"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>

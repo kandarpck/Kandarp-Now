@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--NEW REMINDER-->
+    <string name="name_empty">Name field is empty.</string>
+    <string name="future_only">Reminders can only be set in the future.</string>
+    <string name ="reminder_set">Reminder set.</string>
+
+    <!--EXPIRED-->
+    <string name="expired_auto_delete">Automatic deletion of expired reminders is enabled.</string>
+
+</resources>

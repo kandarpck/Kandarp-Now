@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:fab="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/upcoming_reminders"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:padding="8dp"
+        android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/upcoming_reminders_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/upcoming_empty"/>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/upcoming_reminders_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_action_add_fab"
+        fab:fab_colorNormal="@color/yellow_a700"
+        fab:fab_colorPressed="@color/yellow_a100"
+        fab:fab_colorRipple="@color/yellow_a100"/>
+
+</FrameLayout>

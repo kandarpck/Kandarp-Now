@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--CATEGORIES-->
+    <string name="category_reminders">Reminders</string>
+
+    <!--CATEGORY REMINDERS-->
+    <string name="reminders_auto_delete_expired">Automatically delete expired reminders</string>
+</resources>
