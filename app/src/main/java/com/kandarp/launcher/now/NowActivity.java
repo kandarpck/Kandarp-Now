@@ -30,7 +30,7 @@ import com.kandarp.launcher.now.weather.MainActivity;
 public class NowActivity extends Activity {
 
     CardView weather, stocks, places, movies, location, reminders, directions, navigation, nearby;
-    int PLACE_PICKER_REQUEST = 1;
+    int REQUEST_PLACE_PICKER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,11 +109,12 @@ public class NowActivity extends Activity {
         nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-                Context context = getApplicationContext();
                 try {
-                    startActivityForResult(builder.build(context), PLACE_PICKER_REQUEST);
+                    PlacePicker.IntentBuilder intentBuilder =
+                            new PlacePicker.IntentBuilder();
+                    Context context = getApplicationContext();
+                    Intent intent = intentBuilder.build(context);
+                    startActivityForResult(intent, REQUEST_PLACE_PICKER);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
@@ -127,7 +128,7 @@ public class NowActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PLACE_PICKER_REQUEST) {
+        if (requestCode == REQUEST_PLACE_PICKER) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
                 String toastMsg = String.format("Place: %s", place.getName());

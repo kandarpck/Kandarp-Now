@@ -32,7 +32,7 @@ import java.util.Map;
 public class SearchableActivity extends Activity {
 
 
-    static final String SERVER_URL = "http://104.199.150.121//solr/collection1/select";
+    static final String SERVER_URL = "http://104.199.150.121/solr/collection1/select";
     private static String APP_TAG = "Searchable Activity";
     List<String> content = new ArrayList<>();
     List<String> url = new ArrayList<>();
